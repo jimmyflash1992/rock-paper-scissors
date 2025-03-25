@@ -22,6 +22,7 @@ function getHumanChoice() {
 
 let humanScore = 0;
 let computerScore = 0;
+let gameCount = 0;
 
 function playRound(humanChoice, computerChoice) {
     let humanChoiceLowerCase = humanChoice.toLowerCase();
@@ -59,7 +60,7 @@ function playRound(humanChoice, computerChoice) {
         console.log("Draw");
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
-
+gameCount += 1;
 }
 
 
@@ -70,13 +71,13 @@ function playGame() {
     playRound(humanSelection, computerSelection);
 
 
-    if ((humanScore + computerScore) == 5 && humanScore > computerScore) {
-        console.log(`You win! ${humanScore} to ${computerScore}`);
+    if (gameCount == 5 && humanScore > computerScore) {
+        console.log(`You win the game! ${humanScore} to ${computerScore}`);
     }
 
-    else if ((humanScore + computerScore) == 5 && humanScore < computerScore) {
+    else if (gameCount == 5 && humanScore < computerScore) {
 
-        console.log(`You lose! ${humanScore} to ${computerScore}`);
+        console.log(`You lose the game! ${humanScore} to ${computerScore}`);
     }
 
 }
