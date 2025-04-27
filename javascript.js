@@ -1,7 +1,5 @@
 function getComputerChoice() {
-    const minCeiled = Math.ceil(1);
-    const maxFloored = Math.floor(3);
-    const randvalue = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+    const randvalue = Math.floor(Math.random() * (3 - 1 + 1)) + 1; // The maximum is inclusive and the minimum is inclusive
 
     switch (randvalue) {
         case 1:
@@ -16,9 +14,6 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    return prompt("Paper, Scissors or Rock?");
-}
 
 let humanScore = 0;
 let computerScore = 0;
@@ -28,44 +23,44 @@ function playRound(humanChoice, computerChoice) {
     let humanChoiceLowerCase = humanChoice.toLowerCase();
     if (humanChoiceLowerCase === 'rock' && computerChoice === 'paper') {
         computerScore += 1;
-        console.log("You lose! Paper beats Rock");
+        results.textContent = "You lose! Paper beats Rock";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
     else if (humanChoiceLowerCase === 'rock' && computerChoice === 'scissors') {
         humanScore += 1;
-        console.log("You win! Rock beats Scissors");
+        results.textContent = "You win! Rock beats Scissors";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
     else if (humanChoiceLowerCase === 'paper' && computerChoice === 'rock') {
         humanScore += 1;
-        console.log("You win! Paper beats Rock.");
+        results.textContent = "You win! Paper beats Rock.";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
     else if (humanChoiceLowerCase === 'paper' && computerChoice === 'scissors') {
         computerScore += 1;
-        console.log("You lose! Scissors beats Paper");
+        results.textContent = "You lose! Scissors beats Paper";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
     else if (humanChoiceLowerCase === 'scissors' && computerChoice === 'paper') {
         humanScore += 1;
-        console.log("You win! Scissors beats Paper.");
+        results.textContent = "You win! Scissors beats Paper.";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
     else if (humanChoiceLowerCase === 'scissors' && computerChoice === 'rock') {
         computerScore += 1;
-        console.log("You lose! Rocks beats Scissors.");
+        results.textContent = "You lose! Rocks beats Scissors.";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
     else {
-        console.log("Draw");
+        results.textContent = "Draw";
         console.log(`Current Score Human: ${humanScore} Computer: ${computerScore}`);
     }
-gameCount += 1;
+    gameCount += 1;
 }
 
 
-function playGame() {
-    const humanSelection = getHumanChoice();
+function playGame(humanSelection) {
+
     const computerSelection = getComputerChoice();
 
     playRound(humanSelection, computerSelection);
@@ -82,7 +77,71 @@ function playGame() {
 
 }
 
-playGame();
+//Create Buttons for Rock Paper Scissors
+
+const body = document.querySelector('body');
+
+const div = document.createElement("div");
+
+const rockbtn = document.createElement("button");
+rockbtn.innerHTML = "Rock";
+
+
+const paperbtn = document.createElement("button");
+paperbtn.innerHTML = "Paper";
+
+const scissorsbtn = document.createElement("button");
+scissorsbtn.innerHTML = "Scissors";
+
+// create div to display results
+const results = document.createElement("div");
+
+
+
+
+
+
+
+//results.textContent = "Hello!";
+
+
+//append and display on page
+div.appendChild(rockbtn);
+div.appendChild(paperbtn);
+div.appendChild(scissorsbtn);
+div.appendChild(results);
+
+body.appendChild(div);
+
+// JS to take human choice, through swtich state and for each 
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        switch (button.innerHTML) {
+            case "Rock":
+                playGame(button.innerHTML);
+                break;
+            case "Paper":
+                playGame(button.innerHTML);
+                break;
+            case "Scissors":
+                playGame(button.innerHTML);
+                break;
+        }
+    });
+});
+
+
+
+
+
+
+// playGame(); //hit this 5 times
+
 
 
 
